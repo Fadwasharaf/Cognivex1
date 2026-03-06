@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognivex Portal – Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+    <div class="logo">Cognivex</div>
+    <h1>Welcome Back</h1>
+    <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; font-size: 0.95rem;">Sign in to your account to continue</p>
+
+    <form id="loginForm" class="login-form">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required autocomplete="username" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required autocomplete="current-password" placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+
+    <div id="error-message" class="error-message"></div>
+</div>
+
+<!-- Supabase CDN must be first -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Our scripts (order matters) -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🔐 Login page initialized');
+
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('error-message');
+
+    function showError(msg) {
+        errorMessage.textContent = msg;
+        errorMessage.classList.add('visible');
+    }
+
+    function hideError() {
+        errorMessage.classList.remove('visible');
+    }
+
+    // Wait for authHandler to be ready, with a timeout
+    function waitForAuthHandler(timeoutMs = 5000) {
+        return new Promise((resolve, reject) => {
+            if (window.authHandler) {
+                resolve(window.authHandler);
+                return;
+            }
+            const start = Date.now();
+            const interval = setInterval(() => {
+                if (window.authHandler) {
+                    clearInterval(interval);
+                    resolve(window.authHandler);
+                } else if (Date.now() - start > timeoutMs) {
+                    clearInterval(interval);
+                    reject(new Error('Auth system failed to initialize. Please refresh the page.'));
+                }
+            }, 50);
+        });
+    }
+
+    // ===== LOGIN FORM SUBMISSION =====
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+
+        if (!email || !password) {
+            showError('⚠ Please enter both email and password');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing in...';
+        hideError();
+
+        try {
+            const auth = await waitForAuthHandler();
+            await auth.login(email, password);
+        } catch (err) {
+            console.error('❌ Login error:', err);
+            showError(err.message || 'Login failed. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+        }
+    });
+
+    // ===== AUTO-REDIRECT IF ALREADY LOGGED IN =====
+    waitForAuthHandler()
+        .then(auth => auth.checkSession())
+        .catch(err => console.warn('Session check skipped:', err));
+});
+</script>
+
+</body>
+</html>
