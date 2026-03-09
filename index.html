@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cognivex Portal – Login</title>
+<<<<<<< HEAD
 
+=======
+>>>>>>> bhagya/main
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -20,29 +23,47 @@
             <label for="email">Email Address</label>
             <input type="email" id="email" required autocomplete="username" placeholder="you@example.com">
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> bhagya/main
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" required autocomplete="current-password" placeholder="Enter your password">
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> bhagya/main
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
 
     <div id="error-message" class="error-message"></div>
 </div>
 
+<<<<<<< HEAD
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+=======
+<!-- Supabase CDN must be first -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Our scripts (order matters) -->
+>>>>>>> bhagya/main
 <script src="js/supabase.js"></script>
 <script src="js/auth.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
+=======
+    console.log('🔐 Login page initialized');
+>>>>>>> bhagya/main
 
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('error-message');
 
+<<<<<<< HEAD
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -53,11 +74,53 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!email || !password) {
             errorMessage.textContent = '⚠ Please enter both email and password';
             errorMessage.classList.add('visible');
+=======
+    function showError(msg) {
+        errorMessage.textContent = msg;
+        errorMessage.classList.add('visible');
+    }
+
+    function hideError() {
+        errorMessage.classList.remove('visible');
+    }
+
+    // Wait for authHandler to be ready, with a timeout
+    function waitForAuthHandler(timeoutMs = 5000) {
+        return new Promise((resolve, reject) => {
+            if (window.authHandler) {
+                resolve(window.authHandler);
+                return;
+            }
+            const start = Date.now();
+            const interval = setInterval(() => {
+                if (window.authHandler) {
+                    clearInterval(interval);
+                    resolve(window.authHandler);
+                } else if (Date.now() - start > timeoutMs) {
+                    clearInterval(interval);
+                    reject(new Error('Auth system failed to initialize. Please refresh the page.'));
+                }
+            }, 50);
+        });
+    }
+
+    // ===== LOGIN FORM SUBMISSION =====
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+
+        if (!email || !password) {
+            showError('⚠ Please enter both email and password');
+>>>>>>> bhagya/main
             return;
         }
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Signing in...';
+<<<<<<< HEAD
 
         try {
             await window.authHandler.login(email, password);
@@ -65,15 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.textContent = err.message || 'Login failed. Please try again.';
             errorMessage.classList.add('visible');
         } finally {
+=======
+        hideError();
+
+        try {
+            const auth = await waitForAuthHandler();
+            await auth.login(email, password);
+        } catch (err) {
+            console.error('❌ Login error:', err);
+            showError(err.message || 'Login failed. Please try again.');
+>>>>>>> bhagya/main
             submitBtn.disabled = false;
             submitBtn.textContent = 'Sign In';
         }
     });
 
+<<<<<<< HEAD
     // Auto-redirect if already logged in
     if (window.authHandler) {
         window.authHandler.checkSession();
     }
+=======
+    // ===== AUTO-REDIRECT IF ALREADY LOGGED IN =====
+    waitForAuthHandler()
+        .then(auth => auth.checkSession())
+        .catch(err => console.warn('Session check skipped:', err));
+>>>>>>> bhagya/main
 });
 </script>
 

@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 /* Base Styles */
+=======
+/**
+ * COGNIVEX - Complete Stylesheet
+ * Includes all styles for login, dashboard, and security features
+ */
+
+/* ===== CSS VARIABLES ===== */
+>>>>>>> bhagya/main
 :root {
     --primary-color: #2563eb;
     --primary-hover: #1d4ed8;
@@ -18,6 +27,10 @@
     --transition: all 0.2s ease-in-out;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== RESET & BASE ===== */
+>>>>>>> bhagya/main
 * {
     margin: 0;
     padding: 0;
@@ -38,6 +51,14 @@ body {
 a {
     color: var(--primary-color);
     text-decoration: none;
+<<<<<<< HEAD
+=======
+    transition: var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+>>>>>>> bhagya/main
 }
 
 button {
@@ -45,6 +66,32 @@ button {
     font-family: inherit;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== TYPOGRAPHY ===== */
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+>>>>>>> bhagya/main
 /* ===== LOGIN PAGE ===== */
 .login-page {
     display: flex;
@@ -75,6 +122,7 @@ button {
     text-align: center;
 }
 
+<<<<<<< HEAD
 h1 {
     font-size: 1.75rem;
     font-weight: 700;
@@ -97,6 +145,9 @@ h3 {
     color: var(--text-color);
 }
 
+=======
+/* ===== FORMS ===== */
+>>>>>>> bhagya/main
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -140,7 +191,11 @@ input[type="password"]:focus,
     min-height: 150px;
 }
 
+<<<<<<< HEAD
 /* Button Styles */
+=======
+/* ===== BUTTONS ===== */
+>>>>>>> bhagya/main
 .btn {
     display: inline-flex;
     align-items: center;
@@ -183,6 +238,10 @@ input[type="password"]:focus,
 .btn-secondary:hover:not(:disabled) {
     background-color: #4f46e5;
     box-shadow: var(--shadow-md);
+<<<<<<< HEAD
+=======
+    transform: translateY(-2px);
+>>>>>>> bhagya/main
 }
 
 .btn-text {
@@ -193,6 +252,10 @@ input[type="password"]:focus,
     font-weight: 600;
     text-transform: none;
     letter-spacing: normal;
+<<<<<<< HEAD
+=======
+    width: auto;
+>>>>>>> bhagya/main
 }
 
 .btn-text:hover {
@@ -200,6 +263,10 @@ input[type="password"]:focus,
     color: var(--primary-hover);
 }
 
+<<<<<<< HEAD
+=======
+/* ===== MESSAGES ===== */
+>>>>>>> bhagya/main
 .error-message {
     margin-top: 1rem;
     padding: 1rem;
@@ -217,6 +284,7 @@ input[type="password"]:focus,
     animation: slideIn 0.3s ease-out;
 }
 
+<<<<<<< HEAD
 /* ===== DASHBOARD PAGE ===== */
 .dashboard-page {
     display: flex;
@@ -320,6 +388,8 @@ input[type="password"]:focus,
 }
 
 /* Feedback Message */
+=======
+>>>>>>> bhagya/main
 .feedback-message {
     display: none;
     padding: 1rem 1.25rem;
@@ -352,9 +422,244 @@ input[type="password"]:focus,
     border-left: 4px solid var(--primary-color);
 }
 
+<<<<<<< HEAD
 /* Content Display Section */
 .content-display-section {
     padding: 2rem 1rem 4rem 1rem;
+=======
+/* ===== DASHBOARD PAGE ===== */
+.dashboard-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+/* ===== HEADER ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--border-color);
+    gap: 1rem;
+}
+
+.header .logo {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, #2563eb, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* ===== DASHBOARD MAIN ===== */
+.dashboard-main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-subtitle {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* ===== SECURITY CARD SECTION ===== */
+.security-card-section {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.security-card {
+    background: white;
+    border: 2px solid #dbeafe;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+    transition: all 0.3s ease;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.security-card:hover {
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.card-body {
+    margin-top: 1rem;
+}
+
+.risk-indicator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.risk-indicator {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    font-size: 3rem;
+}
+
+.risk-indicator.low-risk {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    animation: glow-green 2s ease-in-out infinite;
+}
+
+.risk-indicator.low-risk::after {
+    content: '✅';
+}
+
+.risk-indicator.medium-risk {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    animation: glow-yellow 2s ease-in-out infinite;
+}
+
+.risk-indicator.medium-risk::after {
+    content: '⚠️';
+}
+
+.risk-indicator.high-risk {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    animation: glow-red 1s ease-in-out infinite;
+}
+
+.risk-indicator.high-risk::after {
+    content: '🚨';
+}
+
+#risk-level-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 1.5rem;
+}
+
+@keyframes glow-green {
+    0%, 100% {
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+}
+
+@keyframes glow-yellow {
+    0%, 100% {
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes glow-red {
+    0%, 100% {
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* ===== INPUT SECTION ===== */
+.input-section {
+    width: 100%;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, var(--bg-color) 0%, rgba(37, 99, 235, 0.02) 100%);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.button-group .btn {
+    min-width: 140px;
+}
+
+/* ===== CONTENT DISPLAY SECTION ===== */
+.content-display-section {
+    width: 100%;
+    padding: 2rem 1rem 4rem 1rem;
+    background-color: var(--bg-color);
+>>>>>>> bhagya/main
 }
 
 .content-flow {
@@ -380,7 +685,11 @@ input[type="password"]:focus,
     transform: translateX(4px);
 }
 
+<<<<<<< HEAD
 /* Animations */
+=======
+/* ===== ANIMATIONS ===== */
+>>>>>>> bhagya/main
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -393,11 +702,25 @@ input[type="password"]:focus,
 }
 
 @keyframes fadeIn {
+<<<<<<< HEAD
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive Design */
+=======
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+>>>>>>> bhagya/main
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -407,6 +730,10 @@ input[type="password"]:focus,
 
     .status-indicator {
         font-size: 0.8rem;
+<<<<<<< HEAD
+=======
+        flex: 1;
+>>>>>>> bhagya/main
     }
 
     .section-container {
@@ -438,6 +765,23 @@ input[type="password"]:focus,
         padding: 0.875rem;
         font-size: 0.95rem;
     }
+<<<<<<< HEAD
+=======
+
+    .security-card {
+        padding: 1.5rem;
+    }
+
+    .risk-indicator {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+    }
+
+    #risk-level-text {
+        font-size: 1.1rem;
+    }
+>>>>>>> bhagya/main
 }
 
 @media (max-width: 480px) {
@@ -468,9 +812,39 @@ input[type="password"]:focus,
         font-size: 0.9rem;
         line-height: 1.6;
     }
+<<<<<<< HEAD
 }
 
 /* Scrollbar Styling */
+=======
+
+    .security-card-section {
+        padding: 1rem 0.5rem;
+    }
+
+    .security-card {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .risk-indicator {
+        width: 100px;
+        height: 100px;
+        font-size: 2rem;
+    }
+
+    #risk-level-text {
+        font-size: 0.95rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+>>>>>>> bhagya/main
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

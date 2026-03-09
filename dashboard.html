@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+<<<<<<< HEAD
     <!-- Supabase + Auth scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
@@ -27,10 +28,36 @@
 
                         if (!data.session) {
                             console.log('No active session. Redirecting to login.');
+=======
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Our Scripts -->
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/feature-extractor.js"></script>
+    <script src="js/behavior-monitor.js"></script>
+
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkAuthInterval = setInterval(async () => {
+                if (window.supabaseClient && window.authHandler) {
+                    clearInterval(checkAuthInterval);
+
+                    try {
+                        const { data, error } = await window.supabaseClient.auth.getSession();
+                        
+                        if (error) throw error;
+
+                        if (!data.session) {
+                            console.log('❌ No active session. Redirecting to login.');
+>>>>>>> bhagya/main
                             window.location.href = 'index.html';
                             return;
                         }
 
+<<<<<<< HEAD
                         console.log('Authenticated session detected.');
 
                         // Load behavioral monitoring only after auth
@@ -47,6 +74,22 @@
 
                     } catch (err) {
                         console.error('Dashboard auth error:', err);
+=======
+                        console.log('✅ Authenticated session detected.');
+                        console.log(`   User: ${data.session.user.email}`);
+                        
+                        // Store user ID for behavior monitoring
+                        window.currentUserId = data.session.user.id;
+                        
+                        // Initialize behavior monitoring
+                        if (typeof window.initializeSession === 'function') {
+                            window.initializeSession(data.session.user.id);
+                            console.log('📊 Behavior monitoring started');
+                        }
+
+                    } catch (err) {
+                        console.error('❌ Auth check error:', err);
+>>>>>>> bhagya/main
                         window.location.href = 'index.html';
                     }
                 }
@@ -56,6 +99,11 @@
 </head>
 
 <body class="dashboard-page">
+<<<<<<< HEAD
+=======
+
+<!-- ===== HEADER ===== -->
+>>>>>>> bhagya/main
 <header class="header">
     <div class="logo">Cognivex</div>
 
@@ -65,12 +113,38 @@
     </div>
 
     <button class="btn btn-text" id="logoutBtn">Sign Out</button>
+<<<<<<< HEAD
 
 </header>
 
 <main class="dashboard-main">
 
     <!-- INPUT SECTION -->
+=======
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="dashboard-main">
+
+    <!-- ===== SECURITY STATUS CARD (NEW) ===== -->
+    <section class="security-card-section">
+        <div class="section-container">
+            <div class="security-card">
+                <div class="card-header">
+                    <h3>🔐 Security Status</h3>
+                </div>
+                <div class="card-body">
+                    <div class="risk-indicator-container">
+                        <div id="risk-indicator" class="risk-indicator low-risk"></div>
+                        <p id="risk-level-text">✅ Normal Activity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INPUT SECTION ===== -->
+>>>>>>> bhagya/main
     <section class="input-section">
         <div class="section-container">
             <h2>Research Notes</h2>
@@ -92,7 +166,11 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <!-- CONTENT SECTION - FLOWS DIRECTLY WITHOUT BOX -->
+=======
+    <!-- ===== CONTENT DISPLAY SECTION ===== -->
+>>>>>>> bhagya/main
     <section class="content-display-section">
         <div class="section-container">
             <h2>Research Library</h2>
@@ -106,14 +184,23 @@
 
 </main>
 
+<<<<<<< HEAD
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
+=======
+<!-- ===== SCRIPTS ===== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ===== UI ELEMENTS =====
+>>>>>>> bhagya/main
     const content = document.getElementById('researchContent');
     const researchNotes = document.getElementById('researchNotes');
     const saveTextBtn = document.getElementById('saveTextBtn');
     const clearTextBtn = document.getElementById('clearTextBtn');
     const feedbackMessage = document.getElementById('feedback-message');
+<<<<<<< HEAD
 
     // 50+ Lines of content for scrolling
     const contentParagraphs = [
@@ -196,43 +283,136 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dynamically add all paragraphs to content
     contentParagraphs.forEach((text, index) => {
+=======
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // ===== RESEARCH CONTENT =====
+    // ===== RESEARCH CONTENT =====
+const contentParagraphs = [
+    "Zero Trust Architecture is a modern security framework that fundamentally changes how organizations approach access control. Instead of trusting any user or device within a corporate network, Zero Trust requires continuous verification of identity and device posture before granting access to resources.",
+    
+    "Behavioral biometrics represents one of the most innovative advances in cybersecurity authentication methods. This technology monitors unique patterns in how users interact with their devices, including keystroke dynamics, mouse movements, and scrolling patterns, to continuously verify their identity.",
+    
+    "The principle of 'never trust, always verify' is the foundation of Zero Trust Network Architecture (ZTNA), which replaces traditional perimeter-based security with identity-centric access controls. Rather than assuming all traffic within a corporate network is safe, ZTNA treats every connection as potentially untrusted until verified.",
+    
+    "Keystroke dynamics form a biometric signature as unique as fingerprints, measuring factors like the time between key presses, pressure applied to keys, and the rhythm of typing patterns. Machine learning algorithms can identify when someone other than the legitimate user is typing, enabling real-time anomaly detection.",
+    
+    "Mouse movement patterns reveal behavioral characteristics that are difficult for attackers to replicate, including acceleration, velocity, and trajectory curves during clicking actions. These patterns remain consistent for legitimate users while immediately revealing when someone new is controlling the mouse.",
+    
+    "Continuous authentication protects sensitive applications by requiring periodic re-verification throughout a session. Rather than granting access once and maintaining it for the entire session, continuous authentication verifies the user remains the legitimate owner at intervals or before sensitive operations.",
+    
+    "Unauthorized access attempts are immediately flagged and investigated by security teams. Automated response systems can immediately revoke sessions, disable accounts, or initiate incident response procedures when unauthorized access is detected.",
+    
+    "Adaptive security policies evolve with emerging threats by incorporating threat intelligence and historical incident data. Security policies are continuously updated based on new attack techniques and patterns discovered in the wild, keeping defenses aligned with the current threat landscape.",
+    
+    "Behavioral insights improve both usability and security by finding the balance between protection and user experience. Understanding normal user behavior enables creating security policies that are secure without being burdensome or frustrating to legitimate users.",
+    
+    "The integration of behavioral analytics with traditional security controls creates a comprehensive defense strategy. By combining network security, endpoint security, and behavioral monitoring, organizations can detect threats at multiple points in the attack chain.",
+    
+    "Machine learning models trained on behavioral patterns can predict and prevent account takeovers before they happen. By continuously analyzing typing speed, mouse acceleration, scroll patterns, and other behavioral indicators, these models identify anomalies with remarkable accuracy.",
+    
+    "Isolation Forest algorithm is particularly effective for anomaly detection because it requires no labeled data and performs well with high-dimensional datasets. Unlike traditional methods that try to define what normal is, Isolation Forest identifies what is different by recursively partitioning the feature space.",
+    
+    "Session-based monitoring allows security systems to adapt to contextual changes in user behavior. A user typing slowly while working from a mobile device is different from a user typing slowly due to an attacker using an unfamiliar keyboard or input method.",
+    
+    "OTP verification serves as a secondary confirmation when behavioral anomalies are detected. Instead of immediately blocking access, the system can challenge the user with a one-time password, providing a balance between security and usability.",
+    
+    "The concept of progressive security ensures that authentication decisions can be refined as the session progresses. Early decisions can be less strict while maintaining heightened vigilance, and increasing security measures can be applied as risk indicators accumulate.",
+
+    "Feature extraction plays a critical role in transforming raw behavioral data into meaningful numerical values. Metrics such as typing speed, average keystroke interval, backspace ratio, mouse velocity, and scroll frequency provide quantifiable indicators of user interaction patterns.",
+
+    "Anomaly detection systems focus on identifying deviations from established behavioral baselines. Even small inconsistencies in typing rhythm or mouse acceleration can signal potential impersonation attempts when compared to historical user data.",
+
+    "Real-time risk scoring enables immediate decision-making within active sessions. By evaluating behavioral features every few seconds, systems can dynamically adjust security posture without disrupting legitimate users unnecessarily.",
+
+    "Behavioral biometrics offers an advantage over static credentials because it is extremely difficult for attackers to mimic subtle human interaction patterns consistently over time. Even if login credentials are compromised, behavioral inconsistencies can expose unauthorized access.",
+
+    "Data aggregation at session end ensures that only verified behavioral patterns contribute to long-term model training. This approach prevents contaminated or suspicious data from influencing the learning process.",
+
+    "Model versioning enables systems to track improvements and updates in anomaly detection logic. Each retraining cycle refines the model based on the most recent verified sessions, ensuring adaptive and evolving security intelligence.",
+
+    "Sliding window data retention strategies help maintain optimal database performance while preserving relevant behavioral history. By limiting stored logs to recent sessions, systems balance scalability with analytical depth.",
+
+    "Continuous monitoring combined with intelligent retraining creates a self-improving security mechanism. As more sessions are collected, the detection model becomes increasingly personalized and accurate for each individual user.",
+
+    "Context-aware authentication considers factors such as session duration, device changes, and behavioral drift over time. This allows the system to distinguish between legitimate behavioral evolution and malicious takeover attempts.",
+
+    "User experience remains a critical consideration in behavioral authentication systems. Adaptive challenge mechanisms like OTP prompts ensure that legitimate users can quickly verify their identity without experiencing unnecessary lockouts.",
+
+    "The fusion of Zero Trust principles with machine learning-based behavioral analytics represents the future of enterprise application security. This layered defense model significantly reduces the risk of insider threats and external account compromise.",
+
+    "Scalability is a fundamental requirement for enterprise-grade behavioral monitoring platforms. Cloud-native architectures enable secure storage, real-time processing, and seamless model deployment across distributed environments.",
+
+    "Security analytics dashboards provide visibility into session risk levels and anomaly trends. Such insights empower administrators to proactively respond to suspicious patterns and strengthen overall organizational resilience.",
+
+    "Continuous authentication frameworks are increasingly relevant in remote work environments where traditional network perimeters no longer exist. Behavioral biometrics ensures secure access regardless of physical location.",
+
+    "By leveraging behavioral intelligence, organizations move beyond static authentication toward dynamic trust evaluation. This shift enhances both cybersecurity posture and operational efficiency in modern digital ecosystems."
+];
+    // Add paragraphs to content display
+    contentParagraphs.forEach((text) => {
+>>>>>>> bhagya/main
         const p = document.createElement('p');
         p.textContent = text;
         p.className = 'content-paragraph';
         content.appendChild(p);
     });
 
+<<<<<<< HEAD
     // Save Notes button
     saveTextBtn.addEventListener('click', () => {
         const text = researchNotes.value.trim();
         if (text) {
             feedbackMessage.textContent = '✓ Notes saved successfully!';
             feedbackMessage.classList.add('visible', 'success');
+=======
+    // ===== SAVE NOTES BUTTON =====
+    saveTextBtn.addEventListener('click', () => {
+        const text = researchNotes.value.trim();
+        
+        if (text) {
+            feedbackMessage.textContent = '✓ Notes saved successfully!';
+            feedbackMessage.classList.add('visible', 'success');
+            
+>>>>>>> bhagya/main
             setTimeout(() => {
                 feedbackMessage.classList.remove('visible');
             }, 3000);
         } else {
             feedbackMessage.textContent = '⚠ Please enter some notes before saving.';
             feedbackMessage.classList.add('visible', 'warning');
+<<<<<<< HEAD
+=======
+            
+>>>>>>> bhagya/main
             setTimeout(() => {
                 feedbackMessage.classList.remove('visible');
             }, 3000);
         }
     });
 
+<<<<<<< HEAD
     // Clear button
+=======
+    // ===== CLEAR NOTES BUTTON =====
+>>>>>>> bhagya/main
     clearTextBtn.addEventListener('click', () => {
         if (researchNotes.value) {
             if (confirm('Are you sure you want to clear all notes?')) {
                 researchNotes.value = '';
                 feedbackMessage.textContent = 'Notes cleared.';
                 feedbackMessage.classList.add('visible', 'info');
+<<<<<<< HEAD
+=======
+                
+>>>>>>> bhagya/main
                 setTimeout(() => {
                     feedbackMessage.classList.remove('visible');
                 }, 2000);
             }
         }
     });
+<<<<<<< HEAD
 });
 </script>
 
@@ -269,6 +449,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+=======
+
+    // ===== LOGOUT BUTTON =====
+    logoutBtn.addEventListener('click', async () => {
+        console.log('🔄 Logout button clicked');
+        
+        try {
+            logoutBtn.disabled = true;
+            logoutBtn.textContent = 'Signing out...';
+
+            if (window.authHandler) {
+                await window.authHandler.logout();
+            } else {
+                console.error('❌ Auth handler not available');
+                window.location.href = 'index.html';
+            }
+
+        } catch (err) {
+            console.error('❌ Logout error:', err);
+            window.location.href = 'index.html';
+        }
+    });
+
+});
+>>>>>>> bhagya/main
 </script>
 
 </body>
