@@ -1,3 +1,5 @@
+console.log("🔥 THIS IS FADWA'S BEHAVIOR.JS RUNNING 🔥");
+
 console.log("🎯 Behavior monitoring initialized");
 
 // ============================

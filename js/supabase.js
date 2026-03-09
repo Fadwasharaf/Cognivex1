@@ -1,8 +1,8 @@
 console.log('Initializing Supabase...');
 
 if (!window.supabaseClient) {
-    const SUPABASE_URL = 'https://oyaiyklvmzsxrxfnfhem.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_XwKjuzvmtNR2RuvmBqlL3w_dsK5_EbM';
+    const SUPABASE_URL = 'https://lphoncgiccuvifprggvr.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_wkA2MCbEjTlolsVHaTFGuQ_GIZwPabE';
 
     window.supabaseClient = window.supabase.createClient(
         SUPABASE_URL,
